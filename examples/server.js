@@ -4,10 +4,18 @@ const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const WebpackConfig = require('./webpack.config')
+const router = express.Router()
+
+router.get('/simple/get', function(req, res) {
+  res.json({
+    msg: 'Hello World'
+  })
+})
 
 const app = express()
 const compiler = webpack(WebpackConfig)
 
+app.use(router)
 app.use(webpackDevMiddleware(compiler, {
   publicPath: '/__build__/',
   stats: {
