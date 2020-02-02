@@ -6,11 +6,18 @@ const webpackHotMiddleware = require('webpack-hot-middleware')
 const WebpackConfig = require('./webpack.config')
 const router = express.Router()
 
+// simple
 router.get('/simple/get', function(req, res) {
   res.json({
     msg: 'Hello World'
   })
 })
+
+// base
+router.get('/base/get', function(req, res) {
+  res.json(req.query)
+})
+
 
 const app = express()
 const compiler = webpack(WebpackConfig)
